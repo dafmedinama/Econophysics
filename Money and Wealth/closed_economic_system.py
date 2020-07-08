@@ -39,7 +39,7 @@ def simulation(money, amount, agents, time):
 
 
 population = 10000
-total_money = 500000
+total_money = 5000
 time_horizon = 100000
 simulations = 1
 
