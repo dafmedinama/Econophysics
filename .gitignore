@@ -1,4 +1,28 @@
 
 .idea/
-
+.venv/
 __pycache__/
+*.py[cod]
+
+# Local research sources and generated outputs
+Money and Wealth/0001432v4.pdf
+data/results/
+experiments/results/
+experiments/ensemble-checkpoints/
+*.xlsx
+*.mp4
+
+# Dashboard build artifacts
+dashboard/node_modules/
+dashboard/.vinext/
+dashboard/dist/
+dashboard/.wrangler/
+dashboard/.dev.vars
+dashboard/.next/
+*.tsbuildinfo
+*.egg-info/
+build/
+dist/
+.env*
+!.env.example
+dashboard/test-results/

@@ -1,0 +1,10 @@
+{
+  "agents": 500,
+  "total_money": 500000,
+  "transactions": 50000,
+  "sample_every": 2500,
+  "bins": 40,
+  "seed": 20260828,
+  "rule": "system_average",
+  "fixed_amount": 500
+}

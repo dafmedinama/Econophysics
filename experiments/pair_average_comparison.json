@@ -1,0 +1,10 @@
+{
+  "agents": 4000000,
+  "total_money": 4000000000,
+  "transactions": 10000000,
+  "sample_every": 1000000,
+  "bins": 60,
+  "seed": 20260828,
+  "rule": "pair_average",
+  "fixed_amount": 1
+}
