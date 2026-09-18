@@ -22,12 +22,14 @@ export default function ExperimentCharts({
   mode,
   reduced,
   normalized = false,
+  compact = false,
 }: {
   payload: Payload;
   frame: number;
   mode: 'distribution' | 'diagnostics';
   reduced: boolean;
   normalized?: boolean;
+  compact?: boolean;
 }) {
   const [palette, setPalette] = useState<Palette | null>(null);
   useEffect(() => {
@@ -50,9 +52,16 @@ export default function ExperimentCharts({
   const option = useMemo(() => {
     if (!palette) return null;
     return mode === 'distribution'
-      ? distributionOption(payload, frame, normalized, palette, reduced)
+      ? distributionOption(
+          payload,
+          frame,
+          normalized,
+          compact,
+          palette,
+          reduced,
+        )
       : diagnosticsOption(payload, frame, palette, reduced);
-  }, [payload, frame, mode, normalized, palette, reduced]);
+  }, [payload, frame, mode, normalized, compact, palette, reduced]);
   return option ? (
     <EChart
       option={option}
@@ -128,6 +137,7 @@ function distributionOption(
   payload: Payload,
   frame: number,
   normalized: boolean,
+  compact: boolean,
   p: Palette,
   reduced: boolean,
 ): EChartsCoreOption {
@@ -136,7 +146,11 @@ function distributionOption(
   const xs = rows.map((row) => row.midpoint / scale);
   return {
     ...base(p, reduced),
+    ...(compact
+      ? { grid: { left: 34, right: 12, top: 12, bottom: 24 } }
+      : {}),
     legend: {
+      show: !compact,
       data: ['Ensemble mean', 'Exponential reference'],
       textStyle: { color: p.muted },
       top: 4,
@@ -144,19 +158,25 @@ function distributionOption(
     xAxis: {
       type: 'value',
       min: 0,
-      max: rows.at(-1)!.bin_right / scale,
-      name: normalized ? 'Money / T' : 'Money per agent',
+      max: normalized ? 14 : rows.at(-1)!.bin_right / scale,
+      name: compact ? '' : normalized ? 'Money / T' : 'Money per agent',
       nameLocation: 'middle',
       nameGap: 38,
       nameTextStyle: { color: p.muted, fontSize: 14 },
-      axisLabel: { color: p.muted },
+      axisLabel: {
+        color: p.muted,
+        hideOverlap: true,
+        showMaxLabel: false,
+        formatter: (value: number) => number(value, normalized ? 1 : 0),
+      },
       splitLine: { lineStyle: { color: p.line } },
     },
     yAxis: {
       type: 'value',
       min: 0,
-      max: normalized ? 1 : undefined,
-      name: 'Probability / bin',
+      max: compact ? 1 : undefined,
+      name: compact ? '' : 'Probability / bin',
+      splitNumber: compact ? 2 : 5,
       nameTextStyle: { color: p.muted },
       axisLabel: { color: p.muted },
       splitLine: { lineStyle: { color: p.line } },

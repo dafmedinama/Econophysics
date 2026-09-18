@@ -120,12 +120,17 @@ npm run dev
 ```
 
 Use `npm.cmd` in PowerShell if execution policy blocks `npm.ps1`.
-The dashboard needs no simulation backend. Its four views share an observation
-slider and playback control. Comparison aligns observations by attempts per agent,
+The dashboard needs no simulation backend. Wealth shares uses an editorial Lorenz
+plate to contrast the poorest 50% and richest 10%, with an annotated equality gap,
+group-average ratio and PNG export. The other views share an observation slider and playback
+control. Comparison aligns observations by attempts per agent,
 uses money/T on horizontal axes and reports actual recorded times without
 interpolation. Failed files have independent errors and retry buttons. Numeric
-tables, keyboard controls, natural page scrolling and reduced-motion support
-provide alternatives to animated charts. ECharts loads only in chart views.
+paginated data, keyboard controls and reduced-motion support provide alternatives
+to animated charts. Desktop views fit the viewport; narrow screens and text zoom use
+normal vertical flow instead of shrinking labels. Methodology and detailed data open
+separately. On narrow screens, comparison shows
+all models' metrics and the selected model's chart. ECharts loads only in chart views.
 
 ```sh
 npm run check

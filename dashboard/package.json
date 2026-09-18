@@ -9,7 +9,7 @@
     "dev": "vinext dev",
     "build": "vinext build",
     "start": "node scripts/preview.mjs",
-    "lint": "oxlint app components/e-chart.tsx components/experiment-charts.tsx components/ui/button.tsx components/ui/native-select.tsx components/ui/tabs.tsx lib/experiment.ts tests",
+    "lint": "oxlint app components/e-chart.tsx components/experiment-charts.tsx components/wealth-result.tsx components/wealth-pyramid.tsx components/analysis-reading.tsx components/ui/button.tsx components/ui/native-select.tsx components/ui/tabs.tsx lib/experiment.ts lib/pyramid.ts tests",
     "typecheck": "tsc --noEmit --incremental false",
     "test": "node --experimental-strip-types --test tests/*.test.mjs",
     "check": "npm run test && npm run typecheck && npm run lint && npm run build",
